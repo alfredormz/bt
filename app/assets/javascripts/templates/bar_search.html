@@ -1,0 +1,71 @@
+<header>
+  <h1>Beer places search</h1>
+<header>
+<section class="search-form">
+  <form>
+    <div class="input-group input-group-lg">
+      <label for="keywords" class="sr-only">
+        </label>
+      <input placeholder="Name, Address"
+        class="form-control input-lg"
+        type="search"
+        name="q[name_or_address_or_categories_or_snippet_text_or_neighborhoods_cont]"
+        id="keywords"
+        ng-change="search(keywords)"
+        ng-model="keywords">
+      <span class="input-group-btn">
+        <button class="btn btn-primary btn-lg"
+                ng-click="search(keywords)">
+          Find me beer!
+        </button>
+      <span>
+    </div>
+  </form>
+  <h1 class="searchedFor" ng-if="searchedFor">
+    <small>Searched for: </small> {{ searchedFor }}
+  </h1>
+</section>
+<section class="search-results" ng-if="bars.length > 0">
+  <header>
+    <h1>Results</h1>
+  </header>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Adress</th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="bar in bars">
+        <td><img src="{{ bar.image_url }}"</td>
+        <td>
+          <p>
+            {{ bar.name }} ( {{ bar.rating }} )
+          </p>
+        </td>
+        <td> {{ bar.address }}, {{ bar.neighborhoods }}</td>
+        <td>
+          <p>{{ bar.snippet_text }}</p>
+          <p>
+            <em> {{ bar.categories }} </em>
+          </p>
+					<div class="pull-right">
+						<button class="btn btn-small btn-primary"
+										ng-click="viewDetails(bar)">
+							View Details
+						</button>
+					</div>
+        </td>
+        <td><img src="https://maps.googleapis.com/maps/api/staticmap?center={{bar.latitude}},{{bar.longitude}}
+        &zoom=13&size=300x100&maptype=roadmap
+        &markers={{bar.latitude}},{{bar.longitude}}
+        &key=AIzaSyCF4Ch1bseH1r_VJ32vmiRalyA0jwwquPU"></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
