@@ -1,0 +1,49 @@
+<header>
+  <h1>Beer places search</h1>
+<header>
+<section class="search-form">
+  <%= search_form_for @q, method: :get do |f| %>
+    <div class="input-group input-group-lg">
+      <%= label_tag :q, nil, class: "sr-only" %>
+      <%= f.search_field :name_or_address_or_categories_or_snippet_text_cont,
+            placeholder: "Name, Address",
+            class: "form-control input-lg" %>
+      <span class="input-group-btn">
+        <%= submit_tag "Find me beer", class: "btn btn-primary btn-lg" %>
+      <span>
+    </div>
+  <% end %>
+</section>
+<section class="search-results">
+  <header>
+    <h1>Results</h1>
+  </header>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Adress</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @bars.each do |bar|%>
+        <tr>
+          <td><%= image_tag bar.image_url %></td>
+          <td>
+            <p>
+              <%= bar.name %> (<%= bar.rating %>)
+            </p>
+            <p>
+              <em><%= bar.categories %></em>
+            </p>
+
+          </td>
+          <td><%= bar.address %>, <%= bar.neighborhoods %></td>
+          <td><%= bar.snippet_text %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
