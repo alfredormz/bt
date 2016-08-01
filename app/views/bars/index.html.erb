@@ -5,7 +5,7 @@
   <%= search_form_for @q, method: :get do |f| %>
     <div class="input-group input-group-lg">
       <%= label_tag :q, nil, class: "sr-only" %>
-      <%= f.search_field :name_or_address_or_categories_or_snippet_text_cont,
+      <%= f.search_field :name_or_address_or_categories_or_snippet_text_or_neighborhoods_cont,
             placeholder: "Name, Address",
             class: "form-control input-lg" %>
       <span class="input-group-btn">
