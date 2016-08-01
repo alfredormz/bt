@@ -10,7 +10,7 @@ businesses = Yelp.client.search('Buenos Aires', { term: 'beer' }).businesses
 
 businesses.each do |b|
   bar = Bar.find_or_initialize_by(yelp_id: b.id)  
-  bar.name = b.id
+  bar.name = b.name
   bar.image_url = b.image_url
   bar.yelp_url = b.url
   bar.phone = b.display_phone
@@ -20,11 +20,13 @@ businesses.each do |b|
   bar.categories = b.categories.join(", ")
   bar.rating     = b.rating
 
-  bar.address    = b.location.address
+  bar.address    = b.location.address.join(" ")
   bar.city       = b.location.city
   bar.neighborhoods = b.location.neighborhoods.join(", ")
   bar.postal_code = b.location.postal_code 
 
+  bar.snippet_text = b.snippet_text
+  bar.snippet_image_url = b.snippet_image_url
   bar.latitude = b.location.coordinate.latitude
   bar.longitude = b.location.coordinate.longitude
   
