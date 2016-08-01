@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  yelp_id: MyString
+  is_closed: false
+  name: MyString
+  image_url: MyString
+  yelp_url: MyString
+  phone: MyString
+  review_count: 1
+  categories: MyString
+  rating: false
+  snippet_text: MyText
+  snippet_image_url: MyString
+  latitude: 
+  longitude: 
+  address: MyString
+  city: MyString
+  neighborhoods: MyString
+  postal_code: MyString
+
+two:
+  yelp_id: MyString
+  is_closed: false
+  name: MyString
+  image_url: MyString
+  yelp_url: MyString
+  phone: MyString
+  review_count: 1
+  categories: MyString
+  rating: false
+  snippet_text: MyText
+  snippet_image_url: MyString
+  latitude: 
+  longitude: 
+  address: MyString
+  city: MyString
+  neighborhoods: MyString
+  postal_code: MyString

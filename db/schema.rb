@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801071853) do
+ActiveRecord::Schema.define(version: 20160801090703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bars", force: :cascade do |t|
+    t.string   "yelp_id"
+    t.boolean  "is_closed"
+    t.string   "name"
+    t.string   "image_url"
+    t.string   "yelp_url"
+    t.string   "phone"
+    t.integer  "review_count"
+    t.string   "categories"
+    t.float    "rating"
+    t.text     "snippet_text"
+    t.string   "snippet_image_url"
+    t.decimal  "latitude",          precision: 10, scale: 7
+    t.decimal  "longitude",         precision: 10, scale: 7
+    t.string   "address"
+    t.string   "city"
+    t.string   "neighborhoods"
+    t.string   "postal_code"
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
