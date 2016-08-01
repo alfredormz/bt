@@ -1,18 +1,29 @@
+<article ng-app="bars" ng-controller="BarSearchController">
 <header>
   <h1>Beer places search</h1>
 <header>
 <section class="search-form">
-  <%= search_form_for @q, method: :get do |f| %>
+  <form>
     <div class="input-group input-group-lg">
-      <%= label_tag :q, nil, class: "sr-only" %>
-      <%= f.search_field :name_or_address_or_categories_or_snippet_text_or_neighborhoods_cont,
-            placeholder: "Name, Address",
-            class: "form-control input-lg" %>
+      <%= label_tag :keyworks, nil, class: "sr-only" %>
+      <input placeholder="Name, Address"
+        class="form-control input-lg"
+        type="search"
+        name="q[name_or_address_or_categories_or_snippet_text_or_neighborhoods_cont]"
+        id="keywords"
+        ng-change="search(keywords)"
+        ng-model="keywords">
       <span class="input-group-btn">
-        <%= submit_tag "Find me beer", class: "btn btn-primary btn-lg" %>
+        <button class="btn btn-primary btn-lg"
+                ng-click="search(keywords)">
+          Find me beer!
+        </button>
       <span>
     </div>
-  <% end %>
+  </form>
+  <h1 class="searchedFor" ng-if="searchedFor">
+    <small>Searched for: </small> {{ searchedFor }}
+  </h1>
 </section>
 <section class="search-results">
   <header>
@@ -25,25 +36,28 @@
         <th>Name</th>
         <th>Adress</th>
         <th>Description</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      <% @bars.each do |bar|%>
-        <tr>
-          <td><%= image_tag bar.image_url %></td>
-          <td>
-            <p>
-              <%= bar.name %> (<%= bar.rating %>)
-            </p>
-            <p>
-              <em><%= bar.categories %></em>
-            </p>
-
-          </td>
-          <td><%= bar.address %>, <%= bar.neighborhoods %></td>
-          <td><%= bar.snippet_text %></td>
-        </tr>
-      <% end %>
+      <tr ng-repeat="bar in bars">
+        <td><img src="{{ bar.image_url }}"</td>
+        <td>
+          <p>
+            {{ bar.name }} ( {{ bar.rating }} )
+          </p>
+          <p>
+            <em> {{ bar.categories }} </em>
+          </p>
+        </td>
+        <td> {{ bar.address }}, {{ bar.neighborhoods }}</td>
+        <td> {{ bar.snippet_text }}</td>
+        <td><img src="https://maps.googleapis.com/maps/api/staticmap?center={{bar.latitude}},{{bar.longitude}}\
+        &zoom=13&size=300x100&maptype=roadmap
+        &markers={{bar.latitude}},{{bar.longitude}}
+        &key=AIzaSyCF4Ch1bseH1r_VJ32vmiRalyA0jwwquPU"></td>
+      </tr>
     </tbody>
   </table>
 </section>
+</article>
